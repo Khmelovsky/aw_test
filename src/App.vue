@@ -8,8 +8,13 @@
 </template>
 
 <script>
+import Vue from 'vue';
+import Vuetify from 'vuetify';
+
 import { mapActions, mapGetters } from 'vuex';
 import luxy from 'luxy.js';
+
+Vue.use(Vuetify);
 
 export default {
   name: 'App',
