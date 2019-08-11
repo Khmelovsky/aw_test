@@ -1,0 +1,117 @@
+@import '../_variables'
+
+h1
+  font-family $font-black
+  font-size 48px
+  line-height 63px
+  letter-spacing 2.53px
+  @media $mobile
+    font-size 32px
+    line-height 40px
+    letter-spacing 1.68px
+
+h2
+  font-family $font-black
+  font-size 34px
+  line-height 63px
+  letter-spacing 1.79px
+  @media $mobile
+    font-size 24px
+    line-height 40px
+    letter-spacing 1.26px
+
+h3
+  font-family $font-heavy
+  font-size 24px
+  line-height 32px
+  letter-spacing 0.3px
+
+h4
+  font-family $font-heavy
+  font-size 20px
+  line-height 30px
+  letter-spacing normal
+
+h5
+  font-family $font-heavy
+  font-size 16px
+  line-height 25px
+  letter-spacing normal
+
+.decorative-heavy
+  font-family $font-heavy
+  font-size 14px
+  line-height normal
+  letter-spacing 2.5px
+
+.sub-title
+  font-size 17px
+  line-height 28px
+  letter-spacing 0.36px
+  font-family $font-light
+
+strong
+  font-family $font-heavy
+
+a
+  text-decoration none
+  mt(.3s)
+
+  &:hover
+    color $accent_color
+    mt(.3s)
+
+  &.link-1
+    position: relative
+    display: inline
+    z-index: 1
+    mt(.3s)
+    line-height: 28px
+    border-bottom: dotted 2px $accent_color
+
+    &:hover
+      mt(.3s)
+      color: $accent_color !important
+
+  &.link-2
+    color #fff
+    opacity 0.8
+    font-size 16px
+    font-family $font-book
+    mt(.3s)
+
+    &:hover
+      mt(.3s)
+      opacity 1
+
+  &.link-underline
+    display: inline-block
+    position: relative
+    overflow: hidden
+
+    &:hover
+      &:before
+        transform: translate(0)
+
+    &:before
+      content: ''
+      position: absolute
+      bottom: 0
+      left: -2px
+      display: block
+      height: 1px
+      width: 100%
+      transition: .5s ease
+      transform: translate(-100%)
+
+.text-uppercase
+  text-transform uppercase
+
+hr
+  border-style solid
+  border-color $accent_color
+  height 2px
+p
+  margin-bottom: 0
+img
+  max-width 100%

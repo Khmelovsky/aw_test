@@ -1,0 +1,37 @@
+substitutions:
+  _SERVICE_NAME: site
+steps:
+- name: 'gcr.io/cloud-builders/yarn'
+  id: install-deps
+  args: ['install']
+
+- name: 'gcr.io/cloud-builders/yarn'
+  id: build
+  waitFor:
+    - install-deps
+  args: ['build']
+
+- name: 'gcr.io/cloud-builders/gsutil'
+  id: deploy
+  waitFor:
+    - build
+  entrypoint: 'sh'
+  args:
+    - '-c'
+    - |
+      domain="domain_name.com"
+      if [ "$BRANCH_NAME" = "master" ]; then
+        domain="domain_name.com"
+      elif [ "$BRANCH_NAME" = "dev" ]; then
+        domain="domain_name.com"
+      else
+        domain="domain_name.com"
+      fi
+      echo "Deploying $_SERVICE_NAME to $$domain"
+      # ToDo
+      # Add cache for master
+      cd dist/ && gsutil -m -h "Cache-Control:no-cache" cp -z html,js,css,svg -a public-read -R * gs://$$domain
+      cd ..
+      # /bin/sh move-prerender.sh
+      # cd prerendered/ && gsutil -m -h "Content-Type:text/html" cp -z html -a public-read -R * gs://$$domain
+      # gsutil -m -h "Cache-Control:no-cache" cp -z html,js,css,svg -a public-read -R dist/* gs://$$domain
