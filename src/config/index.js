@@ -7,10 +7,6 @@ const base = {
     lg: 992,
     xl: 1200,
   },
-  urls: {
-    cms: process.env.CMS_URL,
-    frontend: process.env.FRONTEND_URL,
-  },
 };
 
 export default base;

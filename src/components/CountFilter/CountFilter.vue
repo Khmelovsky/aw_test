@@ -1,20 +1,15 @@
 <template lang="pug">
-    .Cources
-        h1 TEST
-
+    .CountFilter
 
 </template>
 
 <script>
-
 export default {
-  name: 'Cources',
+  name: 'CountFilter',
 
 };
 </script>
 
-
 <style lang="stylus" scoped>
-
 
 </style>

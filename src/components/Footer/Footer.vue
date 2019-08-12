@@ -17,6 +17,5 @@ footer
   .current_date
     color: $white
   .author
-    color: $white  
+    color: $white
 </style>
-

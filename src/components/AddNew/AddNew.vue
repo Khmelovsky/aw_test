@@ -1,18 +1,13 @@
 <template lang="pug">
-    .Cources
-        h1 TEST
-
-
+    v-btn.AddNew.mx-2(fab, dark, small)
+        v-icon(dark) add
 </template>
 
 <script>
-
 export default {
-  name: 'Cources',
-
+  name: 'AddNew',
 };
 </script>
-
 
 <style lang="stylus" scoped>
 

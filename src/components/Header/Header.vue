@@ -1,7 +1,7 @@
 <template lang="pug">
   div
     v-toolbar(color="primary")
-      v-toolbar-title 
+      v-toolbar-title
        | Test for you
       v-spacer
       v-toolbar-items
@@ -12,7 +12,7 @@
 <script>
 
 
- export default {
+export default {
   name: 'Header',
 };
 </script>

@@ -5,13 +5,10 @@
 </template>
 
 <script>
- export default {
+export default {
   name: 'Search',
-  components: {
-    Search,
-  },
 };
 </script>
 <style lang="stylus" scoped>
-  @import '~Styles/_variables'
+
 </style>

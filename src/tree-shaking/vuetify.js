@@ -1,4 +1,5 @@
 import Vue from 'vue';
+
 import Vuetify, {
   VApp, // required
   VBtn,
@@ -9,6 +10,12 @@ import Vuetify, {
   VLayout,
   VTextField,
   VTooltip,
+  VIcon,
+  VToolbar,
+  VToolbarTitle,
+  VToolbarItems,
+  VSpacer,
+  VFooter,
 } from 'vuetify/lib';
 
 Vue.use(Vuetify, {
@@ -22,9 +29,15 @@ Vue.use(Vuetify, {
     VLayout,
     VTextField,
     VTooltip,
+    VIcon,
+    VToolbar,
+    VToolbarTitle,
+    VToolbarItems,
+    VSpacer,
+    VFooter,
   },
   theme: {
-    primary: '#333333',
+    primary: '#1976d2',
     secondary: '#9D9C9C',
     accent: '#004FFF',
     error: '#FF7070',
