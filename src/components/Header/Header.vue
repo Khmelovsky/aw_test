@@ -1,12 +1,12 @@
 <template lang="pug">
   div
-    v-toolbar(color="deep-purple accent-4")
+    v-toolbar(color="primary")
       v-toolbar-title
        | Test for you
       v-spacer
       v-toolbar-items
-        v-btn(text='') Users
-        v-btn(text='') Cources
+        router-link.v-btn(to="/users") Users
+        router-link.v-btn(to="/cources") Cources
 </template>
 
 <script>
@@ -26,7 +26,7 @@ export default {
       &__items
         .v-btn
           background-color: $primary
-          color: $white
           box-shadow: unset
           font-size 16px
+          color: $white
 </style>

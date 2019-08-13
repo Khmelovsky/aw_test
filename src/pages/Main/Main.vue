@@ -8,6 +8,9 @@
             Search
             CountFilter
       v-layout(row)
+        v-flex(xs12)
+          router-view
+      v-layout(row)
         v-flex(xs-12)
           .pageControl
             Pagination
@@ -19,6 +22,7 @@ import Search from 'Components/Search/Search';
 import CountFilter from 'Components/CountFilter/CountFilter';
 import Pagination from 'Components/Pagination/Pagination';
 
+
 export default {
   name: 'Main',
   components: {
@@ -26,6 +30,7 @@ export default {
     Search,
     CountFilter,
     Pagination,
+
   },
 };
 </script>

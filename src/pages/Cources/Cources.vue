@@ -1,6 +1,6 @@
 <template lang="pug">
-    .Cources
-        h1 TEST
+  .Cources
+    h1 aaaaaaaaaaaaaaaaaaaa
 
 
 </template>
