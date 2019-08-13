@@ -1,7 +1,6 @@
 <template lang="pug">
-    v-toolbar
-        h1 HELLO
-        v-text-field(hide-details prepand-icon="search" single-line)
+   .Search
+      v-text-field(solo label="Search" append-icon="search" )
 </template>
 
 <script>
@@ -9,6 +8,9 @@ export default {
   name: 'Search',
 };
 </script>
-<style lang="stylus" scoped>
+<style lang="stylus">
+  .Search
+    margin-left: 30px
+    height: 50px
 
 </style>

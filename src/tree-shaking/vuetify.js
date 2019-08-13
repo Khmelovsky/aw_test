@@ -1,4 +1,4 @@
-import 'material-design-icons-iconfont/dist/material-design-icons.css'
+import 'material-design-icons-iconfont/dist/material-design-icons.css';
 import Vue from 'vue';
 import Vuetify, {
   VApp, // required
@@ -15,7 +15,19 @@ import Vuetify, {
   VToolbarTitle,
   VToolbarItems,
   VSpacer,
+  VAutocomplete,
   VFooter,
+  VSelect,
+  VDialog,
+  VCard,
+  VCardTitle,
+  VCardText,
+  VCardActions,
+  VTabs,
+  VTab,
+  VTabsItems,
+  VTabItem,
+  VPagination,
 } from 'vuetify/lib';
 
 Vue.use(Vuetify, {
@@ -34,7 +46,19 @@ Vue.use(Vuetify, {
     VToolbarTitle,
     VToolbarItems,
     VSpacer,
+    VAutocomplete,
     VFooter,
+    VSelect,
+    VDialog,
+    VCard,
+    VCardTitle,
+    VCardText,
+    VCardActions,
+    VTabs,
+    VTab,
+    VTabsItems,
+    VTabItem,
+    VPagination,
   },
   theme: {
     primary: '#1976d2',

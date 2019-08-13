@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    v-toolbar(color="primary")
+    v-toolbar(color="deep-purple accent-4")
       v-toolbar-title
        | Test for you
       v-spacer

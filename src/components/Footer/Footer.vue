@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-footer(color='primary')
+  v-footer(color='deep-purple accent-4')
     div.author
       | Andrii Khmelovskyi
     div.current_date
