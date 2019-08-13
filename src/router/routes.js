@@ -11,14 +11,14 @@ export default [
       {
         path: 'cources',
         name: 'cources',
-        component: Cources
+        component: Cources,
       },
       {
         path: 'users',
         name: 'users',
-        component: Users
+        component: Users,
       },
-    ]
+    ],
   },
-  
+
 ];

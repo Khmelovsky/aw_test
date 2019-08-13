@@ -1,6 +1,7 @@
 <template lang="pug">
   .Users
-    h1 QQQQQQQQQQQQQQQQ
+    v-table(:headers="headers" :items="desserts" sort-by="calories")
+
 
 
 </template>
