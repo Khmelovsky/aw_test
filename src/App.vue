@@ -8,7 +8,6 @@
 </template>
 
 <script>
-
 import { mapActions, mapGetters } from 'vuex';
 import luxy from 'luxy.js';
 

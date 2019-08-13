@@ -72,6 +72,7 @@
     "eslint-plugin-vue": "^4.7.1",
     "fs": "^0.0.1-security",
     "husky": "^0.14.3",
+    "material-design-icons-iconfont": "^5.0.1",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "path": "^0.12.7",
     "prerender-spa-plugin": "^3.4.0",

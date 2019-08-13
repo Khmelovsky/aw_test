@@ -1,6 +1,6 @@
 <template lang="pug">
     v-btn.AddNew.mx-2(fab, dark, small)
-        v-icon(dark) add
+        v-icon(dark) account_circle
 </template>
 
 <script>

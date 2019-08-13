@@ -1,5 +1,5 @@
+import 'material-design-icons-iconfont/dist/material-design-icons.css'
 import Vue from 'vue';
-
 import Vuetify, {
   VApp, // required
   VBtn,
@@ -41,5 +41,8 @@ Vue.use(Vuetify, {
     secondary: '#9D9C9C',
     accent: '#004FFF',
     error: '#FF7070',
+  },
+  icons: {
+    iconfont: 'md',
   },
 });
