@@ -15,17 +15,17 @@
 
         v-tabs-items(v-model="tab")
           v-tab-item.modalForm
-            v-form
-              v-text-field(label="Name" required)
-              v-text-field(label="Code" required)
-              v-btn(block color="primary" dark) Submit
+            v-form(ref="form" v-model="valid")
+              v-text-field(label="Name" v-model="cource" required)
+              v-text-field(label="Code" v-model="code" required)
+              v-btn(block color="primary" dark :disabled="!valid" @click="addCource(cource,code,$event)") Submit
 
           v-tab-item.modalForm
             v-form
               v-text-field(label="Name" required)
               v-text-field(label="E-mail" required)
               v-text-field(label="Status" required)
-              v-btn(block color="primary" dark) Submit
+              v-btn(block color="primary" dark ) Submit
 </template>
 
 <script>
@@ -35,7 +35,29 @@ export default {
     return {
       dialog: false,
       tab: null,
+      cource: '',
+      code: '',
+      cources: [],
+      valid: true,
+      courceRule: [
+        v => !!v || 'Name is required',
+      ],
     };
+  },
+  methods: {
+    addCource: function(cource,code,event) {
+      if(this.$refs.form.validate()) {
+        this.snackbar = true
+      }
+      event.preventDefault();
+      this.cources.push({
+        cource: this.cource,
+        code: this.code,
+      });
+      localStorage.setItem('cources',JSON.stringify(this.cources));
+      this.cource = '';
+      this.code = '';
+    },
   },
 };
 </script>
