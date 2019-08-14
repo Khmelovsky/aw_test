@@ -12,7 +12,7 @@
           v-btn
             v-icon(color="orange") edit
           v-btn
-            v-icon(color="red") delete
+            v-icon(color="red" @click="deleteCource(index)") delete
 </template>
 
 <script>
@@ -41,11 +41,17 @@ export default {
       ],
     };
   },
+  methods: {
+    deleteCource: function(index) {
+      this.cources.splice(index,1);
+      localStorage.setItem('cources',JSON.stringify(this.cources));
+    },
+  },
   created: function() {
       let storage = JSON.parse(localStorage.getItem('cources'));
       if(storage === null) this.cources=[];
       else this.cources=storage;
-    },
+    }, 
 };
 </script>
 

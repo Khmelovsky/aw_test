@@ -15,9 +15,9 @@
 
         v-tabs-items(v-model="tab")
           v-tab-item.modalForm
-            v-form(ref="form" v-model="valid")
-              v-text-field(label="Name" v-model="cource" required)
-              v-text-field(label="Code" v-model="code" required)
+            v-form(ref="form" v-model="valid" lazy-validation)
+              v-text-field(label="Name" v-model="cource" :rules="courceRule" required)
+              v-text-field(label="Code" v-model="code" :rules="codeRule" required)
               v-btn(block color="primary" dark :disabled="!valid" @click="addCource(cource,code,$event)") Submit
 
           v-tab-item.modalForm
@@ -29,27 +29,32 @@
 </template>
 
 <script>
+let storage = JSON.parse(localStorage.getItem('cources'));
 export default {
   name: 'AddNew',
   data() {
     return {
       dialog: false,
       tab: null,
-      cource: '',
-      code: '',
-      cources: [],
+      cources: storage,
       valid: true,
+      cource: '',
       courceRule: [
         v => !!v || 'Name is required',
+      ],
+      code: '',
+      codeRule: [
+        v => !!v || 'Code is required',
       ],
     };
   },
   methods: {
     addCource: function(cource,code,event) {
-      if(this.$refs.form.validate()) {
-        this.snackbar = true
-      }
       event.preventDefault();
+      if(this.$refs.form.validate()) {
+        this.snackbar = true;
+        this.$refs.form.resetValidation();
+      }
       this.cources.push({
         cource: this.cource,
         code: this.code,
@@ -62,11 +67,14 @@ export default {
 };
 </script>
 
-<style lang="stylus" scoped>
+<style lang="stylus" >
 @import '~Styles/_variables'
   .v-tabs
+    &__slider-wrapper
+      width: 250px!important
     &__div
       width: 50%
+    
   .v-card
     &__title
       color: $white
@@ -77,4 +85,5 @@ export default {
       text-transform uppercase
       font-size: 18px
       letter-spacing 0.5px
+    
 </style>
