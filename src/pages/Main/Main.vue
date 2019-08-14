@@ -47,10 +47,8 @@ export default {
       margin-left: auto
   .pageControl
     .Pagination
-      position: absolute
-      bottom: 0
-      left: 50%
-      transform: translate(-50%, 0)
+      display: flex
+      justify-content: center
       margin-bottom: 40px
 
 </style>

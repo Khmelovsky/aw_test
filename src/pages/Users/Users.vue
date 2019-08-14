@@ -1,22 +1,20 @@
 <template lang="pug">
-  .Cources
-    v-card-title
+  .Users
+    v-card-title.header
       | Users
-    v-data-table(:headers="titles" :items="cources" hide-actions  class="tableWrap")
+    v-data-table(:headers="titles" :items="users" hide-actions  class="tableWrap")
       template(v-slot:items="props")
         td
           | {{ props.item.name }}
         td
-          | {{ props.item.code }}
+          | {{ props.item.email }}
         td
-          | status
+          | {{ props.item.status }}
         td.actions.text-xs-right
           v-btn
             v-icon(color="orange") edit
           v-btn
-            v-icon(color="red") delete
-
-
+            v-icon(color="red" @click="deleteUser(index)") delete
 </template>
 
 <script>
@@ -25,6 +23,7 @@ export default {
   name: 'Users',
   data() {
     return {
+      cources: [],
       titles: [
         {
           text: 'Name',
@@ -36,22 +35,28 @@ export default {
           value: 'email',
           sortable: false,
         },
-         { text: 'Status',
-           value: 'status',
-           sortable: false,
+        { text: 'Status',
+          value: 'status',
+          sortable: false,
         },
-         { text: 'Actions',
-           align: 'right',
-           sortable: false,
-        },
-      ],
-      cources: [
         {
-          name: 'User 1',
-          code: 'po012343',
+          text: 'Action',
+          align: 'right',
+          sortable: false,
         },
       ],
     };
+  },
+  created() {
+    const storage = JSON.parse(localStorage.getItem('users'));
+    if (storage === null) this.users = [];
+    else this.users = storage;
+  },
+  methods: {
+    deleteUser(index) {
+      this.users.splice(index, 1);
+      localStorage.setItem('users', JSON.stringify(this.cources));
+    },
   },
 };
 </script>
@@ -59,7 +64,9 @@ export default {
 
 <style lang="stylus">
 @import '~Styles/_variables'
-.Cources
+.Users
+  .header
+    color: $black
   margin-top: 25px
   .v-card
     &__title

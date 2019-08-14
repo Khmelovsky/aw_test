@@ -1,6 +1,6 @@
 <template lang="pug">
   .Cources
-    v-card-title
+    v-card-title.header
       | Cources
     v-data-table(:headers="titles" :items="cources" hide-actions  class="tableWrap")
       template(v-slot:items="props")
@@ -37,21 +37,21 @@ export default {
           text: 'Action',
           align: 'right',
           sortable: false,
-        }
+        },
       ],
     };
   },
+  created() {
+    const storage = JSON.parse(localStorage.getItem('cources'));
+    if (storage === null) this.cources = [];
+    else this.cources = storage;
+  },
   methods: {
-    deleteCource: function(index) {
-      this.cources.splice(index,1);
-      localStorage.setItem('cources',JSON.stringify(this.cources));
+    deleteCource(index) {
+      this.cources.splice(index, 1);
+      localStorage.setItem('cources', JSON.stringify(this.cources));
     },
   },
-  created: function() {
-      let storage = JSON.parse(localStorage.getItem('cources'));
-      if(storage === null) this.cources=[];
-      else this.cources=storage;
-    }, 
 };
 </script>
 
@@ -59,6 +59,8 @@ export default {
 <style lang="stylus">
 @import '~Styles/_variables'
 .Cources
+  .header
+    color: $black
   margin-top: 25px
   .v-card
     &__title
@@ -86,7 +88,6 @@ export default {
       background-color: unset!important
       &:first-child
         margin-right: 12px
-
 
 
 </style>

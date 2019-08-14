@@ -15,27 +15,28 @@
 
         v-tabs-items(v-model="tab")
           v-tab-item.modalForm
-            v-form(ref="form" v-model="valid" lazy-validation)
+            v-form(ref="form" v-model="valid" :lazy-validation="lazy")
               v-text-field(label="Name" v-model="cource" :rules="courceRule" required)
               v-text-field(label="Code" v-model="code" :rules="codeRule" required)
               v-btn(block color="primary" dark :disabled="!valid" @click="addCource(cource,code,$event)") Submit
 
           v-tab-item.modalForm
             v-form
-              v-text-field(label="Name" required)
-              v-text-field(label="E-mail" required)
-              v-text-field(label="Status" required)
+              v-text-field(label="Name" v-model="name" :rules="nameRule" required)
+              v-text-field(label="E-mail" v-model="email" :rules="emailRule" required)
+              v-text-field(label="Status" v-model="email" :rules="emailRule" required)
               v-btn(block color="primary" dark ) Submit
 </template>
 
 <script>
-let storage = JSON.parse(localStorage.getItem('cources'));
+const storage = JSON.parse(localStorage.getItem('cources'));
 export default {
   name: 'AddNew',
   data() {
     return {
       dialog: false,
       tab: null,
+      lazy: false,
       cources: storage,
       valid: true,
       cource: '',
@@ -49,9 +50,9 @@ export default {
     };
   },
   methods: {
-    addCource: function(cource,code,event) {
+    addCource(cource, code, event) {
       event.preventDefault();
-      if(this.$refs.form.validate()) {
+      if (this.$refs.form.validate()) {
         this.snackbar = true;
         this.$refs.form.resetValidation();
       }
@@ -59,7 +60,7 @@ export default {
         cource: this.cource,
         code: this.code,
       });
-      localStorage.setItem('cources',JSON.stringify(this.cources));
+      localStorage.setItem('cources', JSON.stringify(this.cources));
       this.cource = '';
       this.code = '';
     },
@@ -74,7 +75,7 @@ export default {
       width: 250px!important
     &__div
       width: 50%
-    
+
   .v-card
     &__title
       color: $white
@@ -85,5 +86,5 @@ export default {
       text-transform uppercase
       font-size: 18px
       letter-spacing 0.5px
-    
+
 </style>

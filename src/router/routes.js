@@ -3,18 +3,19 @@ const Cources = () => import(/* webpackChunkName: 'Cources' */ 'Pages/Cources/Co
 const Users = () => import(/* webpackChunkName: 'Users' */ 'Pages/Users/Users');
 
 export default [
+  { path: '/', redirect: '/cources' },
   {
     path: '/',
     name: 'home',
     component: Main,
     children: [
       {
-        path: 'cources',
+        path: '/cources',
         name: 'cources',
         component: Cources,
       },
       {
-        path: 'users',
+        path: '/users',
         name: 'users',
         component: Users,
       },
