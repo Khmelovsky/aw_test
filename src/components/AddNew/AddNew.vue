@@ -35,7 +35,7 @@ export default {
     return {
       dialog: false,
       tab: null,
-    }
+    };
   },
 };
 </script>
