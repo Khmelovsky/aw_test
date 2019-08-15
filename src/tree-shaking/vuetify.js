@@ -29,6 +29,7 @@ import Vuetify, {
   VTabItem,
   VPagination,
   VDataTable,
+  VChip,
 } from 'vuetify/lib';
 
 Vue.use(Vuetify, {
@@ -61,6 +62,7 @@ Vue.use(Vuetify, {
     VTabItem,
     VPagination,
     VDataTable,
+    VChip,
   },
   theme: {
     primary: '#1976d2',
