@@ -5,7 +5,7 @@
     v-data-table(:headers="titles" :items="users" hide-actions  class="tableWrap")
       template(v-slot:items="props")
         td
-          | {{ props.item.name }}
+          | {{ props.item.user }}
         td
           | {{ props.item.email }}
         td
@@ -23,7 +23,7 @@ export default {
   name: 'Users',
   data() {
     return {
-      cources: [],
+      users: [],
       titles: [
         {
           text: 'Name',
@@ -55,7 +55,7 @@ export default {
   methods: {
     deleteUser(index) {
       this.users.splice(index, 1);
-      localStorage.setItem('users', JSON.stringify(this.cources));
+      localStorage.setItem('users', JSON.stringify(this.users));
     },
   },
 };

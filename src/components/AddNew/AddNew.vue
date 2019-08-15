@@ -18,18 +18,19 @@
             v-form(ref="form" v-model="valid" :lazy-validation="lazy")
               v-text-field(label="Name" v-model="cource" :rules="courceRule" required)
               v-text-field(label="Code" v-model="code" :rules="codeRule" required)
-              v-btn(block color="primary" dark :disabled="!valid" @click="addCource(cource,code,$event)") Submit
+              v-btn(block color="primary" dark :disabled="!valid" @click="addCource(cource,code,$event);dialog = false;") Submit
 
           v-tab-item.modalForm
-            v-form
-              v-text-field(label="Name" v-model="name" :rules="nameRule" required)
+            v-form(ref="form" v-model="valid" :lazy-validation="lazy")
+              v-text-field(label="Name" v-model="user" :rules="userRule" required)
               v-text-field(label="E-mail" v-model="email" :rules="emailRule" required)
-              v-text-field(label="Status" v-model="email" :rules="emailRule" required)
-              v-btn(block color="primary" dark ) Submit
+              v-select(v-model="status" :items="statusList" :rules="[v => !!v || 'Item is required']" label="Status" required)
+              v-btn(block color="primary" dark :disabled="!valid" @click="addUser(user,email,status,$event);dialog = false;") Submit
 </template>
 
 <script>
-const storage = JSON.parse(localStorage.getItem('cources'));
+const storageCources = JSON.parse(localStorage.getItem('cources') || '[]');
+const storageUsers = JSON.parse(localStorage.getItem('users') || '[]');
 export default {
   name: 'AddNew',
   data() {
@@ -37,15 +38,32 @@ export default {
       dialog: false,
       tab: null,
       lazy: false,
-      cources: storage,
+      cources: storageCources,
+      users: storageUsers,
       valid: true,
       cource: '',
+      status: null,
+      statusList: [
+        'Active',
+        'Inactive',
+      ],
+      statuses: [],
       courceRule: [
         v => !!v || 'Name is required',
       ],
       code: '',
       codeRule: [
         v => !!v || 'Code is required',
+      ],
+      user: '',
+      userRule: [
+        v => !!v || 'Full name is required',
+        v => (v && v.length >= 4) || 'Name sould be not less then 4 characters',
+      ],
+      email: '',
+      emailRule: [
+        v => !!v || 'E-mail is required',
+        v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
       ],
     };
   },
@@ -63,6 +81,21 @@ export default {
       localStorage.setItem('cources', JSON.stringify(this.cources));
       this.cource = '';
       this.code = '';
+    },
+    addUser(user, email, status, event) {
+      event.preventDefault();
+      if (this.$refs.form.validate()) {
+        this.snackbar = true;
+        this.$refs.form.resetValidation();
+      }
+      this.users.push({
+        user: this.user,
+        email: this.email,
+        status: this.status,
+      });
+      localStorage.setItem('users', JSON.stringify(this.users));
+      this.user = '';
+      this.email = '';
     },
   },
 };
@@ -86,5 +119,6 @@ export default {
       text-transform uppercase
       font-size: 18px
       letter-spacing 0.5px
-
+  .theme--dark.v-btn.v-btn--disabled:not(.v-btn--icon):not(.v-btn--flat):not(.v-btn--outline)
+    background-color: rgba(25, 118, 210, 0.5)!important
 </style>
