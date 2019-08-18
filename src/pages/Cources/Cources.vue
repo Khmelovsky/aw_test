@@ -47,9 +47,8 @@ export default {
   computed: {
     filteredCources() {
       const self = this;
-      return this.cources
-        .filter(currCource => currCource.cource.toLowerCase()
-          .indexOf(self.resultCource.toLowerCase()) >= 0);
+      return this.cources.filter(query => (query.cource.toLowerCase().indexOf(self.resultCource.toLowerCase()) >= 0)
+               || (query.code.toLowerCase().indexOf(self.resultCource.toLowerCase()) >= 0));
     },
   },
   watch: {

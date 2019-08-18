@@ -42,9 +42,8 @@ export default {
   computed: {
     filteredUsers() {
       const self = this;
-      return this.users
-        .filter(currUser => currUser.user.toLowerCase()
-          .indexOf(self.resultUser.toLowerCase()) >= 0);
+      return this.users.filter(query => (query.user.toLowerCase().indexOf(self.resultUser.toLowerCase()) >= 0)
+               || (query.email.toLowerCase().indexOf(self.resultUser.toLowerCase()) >= 0));
     },
   },
   watch: {
