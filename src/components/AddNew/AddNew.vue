@@ -12,20 +12,19 @@
             | Cource
           v-tab
             | User
-
         v-tabs-items(v-model="tab")
           v-tab-item.modalForm
             v-form(ref="form" v-model="valid" :lazy-validation="lazy")
               v-text-field(label="Name" v-model="cource" :rules="courceRule" required)
               v-text-field(label="Code" v-model="code" :rules="codeRule" required)
-              v-btn(block color="primary" dark :disabled="!valid" @click="addCource(cource,code,$event);dialog = false;") Submit
+              v-btn(block color="primary" dark :disabled="!valid" @click.prevent="addCource(cource,code,$event);dialog = false;") Submit
 
           v-tab-item.modalForm
             v-form(ref="form" v-model="valid" :lazy-validation="lazy")
               v-text-field(label="Name" v-model="user" :rules="userRule" required)
               v-text-field(label="E-mail" v-model="email" :rules="emailRule" required)
               v-select(v-model="status" :items="statusList" :rules="[v => !!v || 'Item is required']" label="Status" required)
-              v-btn(block color="primary" dark :disabled="!valid" @click="addUser(user,email,status,$event);dialog = false;") Submit
+              v-btn(block color="primary" dark :disabled="!valid" @click.prevent="addUser(user,email,status,$event);dialog = false;") Submit
 </template>
 
 <script>
@@ -69,7 +68,6 @@ export default {
   },
   methods: {
     addCource(cource, code, event) {
-      event.preventDefault();
       if (this.$refs.form.validate()) {
         this.snackbar = true;
         this.$refs.form.resetValidation();
@@ -83,7 +81,6 @@ export default {
       this.code = '';
     },
     addUser(user, email, status, event) {
-      event.preventDefault();
       if (this.$refs.form.validate()) {
         this.snackbar = true;
         this.$refs.form.resetValidation();

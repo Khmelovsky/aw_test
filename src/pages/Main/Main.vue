@@ -5,11 +5,11 @@
         v-flex(xs12)
           .controlComponents
             AddNew
-            Search
+            Search(@inputData="searchFilter")
             CountFilter
       v-layout(row)
         v-flex(xs12)
-          router-view
+          router-view(:filteredCource="childData")
       v-layout(row)
         v-flex(xs-12)
           .pageControl
@@ -22,6 +22,7 @@ import Search from 'Components/Search/Search';
 import CountFilter from 'Components/CountFilter/CountFilter';
 import Pagination from 'Components/Pagination/Pagination';
 
+// import Cources from 'Pages/Cources/Cources';
 
 export default {
   name: 'Main',
@@ -31,6 +32,16 @@ export default {
     CountFilter,
     Pagination,
 
+  },
+  data() {
+    return {
+      childData: '',
+    };
+  },
+  methods: {
+    searchFilter(variable) {
+      this.childData = variable;
+    },
   },
 };
 </script>
