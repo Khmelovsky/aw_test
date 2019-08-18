@@ -18,9 +18,19 @@
               | {{user.status}}
           td.actions.text-xs-right
             v-btn
-              v-icon(color="orange") edit
+              v-icon(color="orange" @click.prevent="editModal = true") edit
             v-btn
               v-icon(color="red" @click="deleteUser(index)") delete
+
+            v-dialog(v-model="editModal" max-width="500")
+              v-card
+                v-card-title.headline.primary.lighten-0(primary-title)
+                  | Edit User
+                v-form.updateForm(ref="userUpdate")
+                    v-text-field(label="Name")
+                    v-text-field(label="Email")
+                    v-select( :items="statusList" label="Status" )
+                    v-btn(block color="primary" dark @click.prevent="updateUser(user,email,status,$event);editModal = false;") Update
 </template>
 
 <script>
@@ -37,6 +47,11 @@ export default {
       headers: ['Name', 'E-mail', 'Status', 'Action'],
       users: [],
       resultUser: '',
+      editModal: false,
+      statusList: [
+        'Active',
+        'Inactive',
+      ],
     };
   },
   computed: {
@@ -107,6 +122,12 @@ export default {
       background-color: unset!important
       &:first-child
         margin-right: 12px
-
-
+.updateForm
+  padding: 30px 20px
+  .v-text-field
+    margin-bottom 15px
+  .v-btn
+    text-transform uppercase
+    font-size: 18px
+    letter-spacing 0.5px
 </style>

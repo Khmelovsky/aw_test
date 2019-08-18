@@ -15,14 +15,18 @@
             | {{cource.code}}
           td.actions.text-xs-right
             v-btn
-              v-icon(color="orange" @click.stop="editModal = true") edit
+              v-icon(color="orange" @click.prevent="editModal = true") edit
             v-btn
               v-icon(color="red" @click="deleteCource(index)") delete
 
-          v-dialog(v-model="editModal" max-width="500")
-            v-card
-              v-card-title.headline.primary.lighten-0(primary-title)
-                | Edit Cource
+            v-dialog(v-model="editModal" max-width="500")
+              v-card
+                v-card-title.headline.primary.lighten-0(primary-title)
+                  | Edit Cource
+                v-form.updateForm(ref="courseUpdate")
+                    v-text-field(label="Name")
+                    v-text-field(label="Code")
+                    v-btn(block color="primary" dark @click.prevent="updateCource(cource,code,$event);editModal = false;") Update
 
 </template>
 
@@ -128,6 +132,14 @@ export default {
       background-color: unset!important
       &:first-child
         margin-right: 12px
+.updateForm
+  padding: 30px 20px
+  .v-text-field
+    margin-bottom 15px
+  .v-btn
+    text-transform uppercase
+    font-size: 18px
+    letter-spacing 0.5px
 
 
 </style>

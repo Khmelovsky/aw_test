@@ -112,6 +112,8 @@ export default {
   .v-window
     padding: 30px 20px
   .modalForm
+    .v-text-field
+      margin-bottom 15px
     .v-btn
       text-transform uppercase
       font-size: 18px
