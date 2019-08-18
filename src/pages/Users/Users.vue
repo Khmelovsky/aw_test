@@ -8,33 +8,33 @@
           th(v-for="header in headers" class="column")
             | {{header}}
       tbody
-        tr(v-for="(user,index) in filteredUsers")
+        tr(v-for="(userRow,index) in filteredUsers")
           td(class="column text-xs-left")
-            | {{user.user}}
+            | {{userRow.user}}
           td(class="column text-xs-left")
-            | {{user.email}}
+            | {{userRow.email}}
           td
-            v-chip(:color="statusColor(user.status)")
-              | {{user.status}}
+            v-chip(:color="statusColor(userRow.status)")
+              | {{userRow.status}}
           td.actions.text-xs-right
             v-btn
-              v-icon(color="orange" @click.prevent="editModal = true") edit
+              v-icon(color="orange" @click.prevent="editUser(index); editModal = true;") edit
             v-btn
               v-icon(color="red" @click="deleteUser(index)") delete
 
-            v-dialog(v-model="editModal" max-width="500")
-              v-card
-                v-card-title.headline.primary.lighten-0(primary-title)
-                  | Edit User
-                v-form.updateForm(ref="userUpdate")
-                    v-text-field(label="Name" v-model="cource")
-                    v-text-field(label="Email" v-model="code")
-                    v-select( :items="statusList" label="Status" )
-                    v-btn(block color="primary" dark @click.prevent="updateUser(user,email,status,$event);editModal = false;") Update
+    v-dialog(v-model="editModal" max-width="500")
+      v-card
+        v-card-title.headline.primary.lighten-0(primary-title)
+          | Edit User
+        v-form.updateForm(ref="userUpdate")
+            v-text-field(label="Name" v-model="editUsers.user")
+            v-text-field(label="Email" v-model="editUsers.email")
+            v-select(v-model="editUsers.status" :items="statusList" label="Status" )
+            v-btn(block color="primary" dark @click.prevent="updateUser(user,email,status,$event);editModal = false;") Update
 </template>
 
 <script>
-
+const storageUsers = JSON.parse(localStorage.getItem('users') || '[]');
 export default {
   name: 'Users',
   props: {
@@ -45,9 +45,18 @@ export default {
   data() {
     return {
       headers: ['Name', 'E-mail', 'Status', 'Action'],
-      users: [],
+      users: storageUsers,
       resultUser: '',
       editModal: false,
+      user: '',
+      email: '',
+      status: '',
+      editUsers: {
+        user: '',
+        email: '',
+        status: '',
+      },
+      count: -1,
       statusList: [
         'Active',
         'Inactive',
@@ -79,6 +88,23 @@ export default {
     statusColor(status) {
       if (status === 'Active') return 'green';
       return 'red';
+    },
+    editUser(index) {
+      this.editUsers = this.users[index];
+    },
+    updateUser() {
+      const userDb = {
+        user: this.user,
+        email: this.email,
+        status: this.status,
+      };
+      this.users[this.count] = userDb;
+      localStorage.setItem('users', JSON.stringify(this.users));
+      const userStorage = JSON.parse(localStorage.getItem('users'));
+      this.cources = userStorage;
+      this.user = '';
+      this.email = '';
+      this.status = '';
     },
   },
 };
