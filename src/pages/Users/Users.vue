@@ -27,8 +27,8 @@
                 v-card-title.headline.primary.lighten-0(primary-title)
                   | Edit User
                 v-form.updateForm(ref="userUpdate")
-                    v-text-field(label="Name")
-                    v-text-field(label="Email")
+                    v-text-field(label="Name" v-model="cource")
+                    v-text-field(label="Email" v-model="code")
                     v-select( :items="statusList" label="Status" )
                     v-btn(block color="primary" dark @click.prevent="updateUser(user,email,status,$event);editModal = false;") Update
 </template>

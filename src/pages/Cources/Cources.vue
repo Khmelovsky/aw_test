@@ -8,30 +8,30 @@
           th(v-for="header in headers" class="column")
             | {{header}}
       tbody
-        tr(v-for="(cource,index) in filteredCources")
+        tr(v-for="(courceRow,index) in filteredCources")
           td(class="column text-xs-left")
-            | {{cource.cource}}
+            | {{courceRow.cource}}
           td(class="column text-xs-left")
-            | {{cource.code}}
+            | {{courceRow.code}}
           td.actions.text-xs-right
             v-btn
-              v-icon(color="orange" @click.prevent="editModal = true") edit
+              v-icon(color="orange" @click.prevent="editCource(index); editModal = true;") edit
             v-btn
               v-icon(color="red" @click="deleteCource(index)") delete
 
-            v-dialog(v-model="editModal" max-width="500")
-              v-card
-                v-card-title.headline.primary.lighten-0(primary-title)
-                  | Edit Cource
-                v-form.updateForm(ref="courseUpdate")
-                    v-text-field(label="Name")
-                    v-text-field(label="Code")
-                    v-btn(block color="primary" dark @click.prevent="updateCource(cource,code,$event);editModal = false;") Update
+    v-dialog(v-model="editModal" max-width="500")
+      v-card
+        v-card-title.headline.primary.lighten-0(primary-title)
+          | Edit Cource
+        v-form.updateForm(ref="courseUpdate")
+            v-text-field(label="Name" v-model="editCources.cource" required)
+            v-text-field(label="Code" v-model="editCources.code" required)
+            v-btn(block color="primary" dark @click.prevent="updateCource($event); editModal = false;") Update
 
 </template>
 
 <script>
-
+const storageCources = JSON.parse(localStorage.getItem('cources') || '[]');
 export default {
   name: 'Cources',
   props: {
@@ -42,8 +42,14 @@ export default {
   data() {
     return {
       headers: ['Name', 'Code', 'Action'],
-      cources: [],
-      ind: 0,
+      cources: storageCources,
+      cource: '',
+      code: '',
+      editCources: {
+        cource: '',
+        code: '',
+      },
+      count: -1,
       editModal: false,
       resultCource: '',
     };
@@ -66,26 +72,22 @@ export default {
     else this.cources = storage;
   },
   methods: {
-    editCource(t, i) {
-      this.edit = !this.edit;
-      this.cource = t.cource;
-      this.description = t.description;
-      this.ind = i;
+    editCource(index) {
+      this.editCources = this.cources[index];
+      // console.log(this.editCources);
     },
-    /* updateCource(event) {
-      event.preventDEfault();
-      this.edit = !this.edit;
+    updateCource() {
       const courceDb = {
-        task: this.task,
-        description: this.description,
+        cource: this.cource,
+        code: this.code,
       };
-      this.cources[this.ind] = courceDb;
-      localStorage.setItem('cources', JSON.stringify(cources));
+      this.cources[this.count] = courceDb;
+      localStorage.setItem('cources', JSON.stringify(this.cources));
       const courceStorage = JSON.parse(localStorage.getItem('cources'));
       this.cources = courceStorage;
       this.cource = '';
       this.description = '';
-    }, */
+    },
     deleteCource(index) {
       this.cources.splice(index, 1);
       localStorage.setItem('cources', JSON.stringify(this.cources));
@@ -93,7 +95,6 @@ export default {
   },
 };
 </script>
-
 
 <style lang="stylus">
 @import '~Styles/_variables'
