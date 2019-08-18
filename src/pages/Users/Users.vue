@@ -8,7 +8,7 @@
           th(v-for="header in headers" class="column")
             | {{header}}
       tbody
-        tr(v-for="(user,index) in users")
+        tr(v-for="(user,index) in filteredUsers")
           td(class="column text-xs-left")
             | {{user.user}}
           td(class="column text-xs-left")
@@ -27,11 +27,30 @@
 
 export default {
   name: 'Users',
+  props: {
+    filteredUser: {
+      type: String,
+    },
+  },
   data() {
     return {
       headers: ['Name', 'E-mail', 'Status', 'Action'],
       users: [],
+      resultUser: '',
     };
+  },
+  computed: {
+    filteredUsers() {
+      const self = this;
+      return this.users
+        .filter(currUser => currUser.user.toLowerCase()
+          .indexOf(self.resultUser.toLowerCase()) >= 0);
+    },
+  },
+  watch: {
+    filteredUser() {
+      this.resultUser = this.filteredUser;
+    },
   },
   created() {
     const storage = JSON.parse(localStorage.getItem('users'));

@@ -14,7 +14,6 @@ export default {
   methods: {
     submit() {
       this.$emit('inputData', this.searchFilter);
-      // this.searchFilter = "";
     },
   },
 };

@@ -9,7 +9,7 @@
             CountFilter
       v-layout(row)
         v-flex(xs12)
-          router-view(:filteredCource="childData")
+          router-view(:filteredCource="childData" :filteredUser="childData")
       v-layout(row)
         v-flex(xs-12)
           .pageControl
@@ -22,8 +22,6 @@ import Search from 'Components/Search/Search';
 import CountFilter from 'Components/CountFilter/CountFilter';
 import Pagination from 'Components/Pagination/Pagination';
 
-// import Cources from 'Pages/Cources/Cources';
-
 export default {
   name: 'Main',
   components: {
@@ -31,7 +29,6 @@ export default {
     Search,
     CountFilter,
     Pagination,
-
   },
   data() {
     return {
@@ -39,8 +36,8 @@ export default {
     };
   },
   methods: {
-    searchFilter(variable) {
-      this.childData = variable;
+    searchFilter(data) {
+      this.childData = data;
     },
   },
 };

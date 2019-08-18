@@ -67,7 +67,7 @@ export default {
     };
   },
   methods: {
-    addCource(cource, code, event) {
+    addCource() {
       if (this.$refs.form.validate()) {
         this.snackbar = true;
         this.$refs.form.resetValidation();
@@ -80,7 +80,7 @@ export default {
       this.cource = '';
       this.code = '';
     },
-    addUser(user, email, status, event) {
+    addUser() {
       if (this.$refs.form.validate()) {
         this.snackbar = true;
         this.$refs.form.resetValidation();

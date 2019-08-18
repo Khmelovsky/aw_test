@@ -2,7 +2,6 @@
   .Cources
     v-card-title.header
       | Cources
-
     table(class="v-datatable v-table theme--light" v-show="cources.length")
       thead
         tr
@@ -24,7 +23,6 @@
             v-card
               v-card-title.headline.primary.lighten-0(primary-title)
                 | Edit Cource
-
 
 </template>
 
@@ -71,7 +69,7 @@ export default {
       this.description = t.description;
       this.ind = i;
     },
-    updateCource(event) {
+    /* updateCource(event) {
       event.preventDEfault();
       this.edit = !this.edit;
       const courceDb = {
@@ -84,7 +82,7 @@ export default {
       this.cources = courceStorage;
       this.cource = '';
       this.description = '';
-    },
+    }, */
     deleteCource(index) {
       this.cources.splice(index, 1);
       localStorage.setItem('cources', JSON.stringify(this.cources));
