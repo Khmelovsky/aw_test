@@ -29,8 +29,8 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 
 # Preview
 
-![screen 1](https://github.com/Khmelovsky/aw_test/screenshots/1.png "Cources")
-![screen 2](https://github.com/Khmelovsky/aw_test/screenshots/2.png "Users")
-![screen 3](https://github.com/Khmelovsky/aw_test/screenshots/3.png "Add new Cource or User")
+![screen 1](https://raw.githubusercontent.com/Khmelovsky/aw_test/master/screenshots/1.png "Cources")
+![screen 2](https://raw.githubusercontent.com/Khmelovsky/aw_test/master/screenshots/2.png "Users")
+![screen 3](https://raw.githubusercontent.com/Khmelovsky/aw_test/master/screenshots/3.png "Add new Cource or User")
 
 
