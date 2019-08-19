@@ -1,6 +1,6 @@
-# Vue-develop
+# Students / Cources SPA
 
-> Vue-develop
+> Students / Cources SPA
 
 ## Build Setup
 
@@ -17,7 +17,7 @@ yarn build
 ```
 # Structure
   * components - header, footer and another components
-  * pages - main, about, create here only pages NOT Components!
+  * pages - main here only pages NOT Components!
   * store - vuex
   * styles - general styles for theme
     * components - for styles components, I've created example
@@ -26,4 +26,11 @@ yarn build
 
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+# Preview
+
+![screen 1](https://github.com/Khmelovsky/aw_test/screenshots/1.png "Cources")
+![screen 2](https://github.com/Khmelovsky/aw_test/screenshots/2.png "Users")
+![screen 3](https://github.com/Khmelovsky/aw_test/screenshots/3.png "Add new Cource or User")
+
 
